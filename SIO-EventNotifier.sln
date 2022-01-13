@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7937BCC9-61D1-4FC2-BD82-04648C757114}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIO.EventNotifier", "src\SIO.EventNotifier\SIO.EventNotifier.csproj", "{7C93CCDE-0065-4E98-A412-4EC49B37985A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIO.Domain", "src\SIO.Domain\SIO.Domain.csproj", "{357C225B-D509-4D35-BE0A-E9F17553FDE7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIO.Migrations", "src\SIO.Migrations\SIO.Migrations.csproj", "{91F2DAA6-7DD5-44C2-BF99-6A6AE9F5A73C}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{4B0B5D71-C9D5-4100-966F-B01B46A4AD65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIO.EntityFrameworkCore", "src\SIO.EntityFrameworkCore\SIO.EntityFrameworkCore.csproj", "{1BC1F0F4-0D10-438D-9C78-E35D3228D646}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C93CCDE-0065-4E98-A412-4EC49B37985A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C93CCDE-0065-4E98-A412-4EC49B37985A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C93CCDE-0065-4E98-A412-4EC49B37985A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C93CCDE-0065-4E98-A412-4EC49B37985A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{357C225B-D509-4D35-BE0A-E9F17553FDE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{357C225B-D509-4D35-BE0A-E9F17553FDE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{357C225B-D509-4D35-BE0A-E9F17553FDE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{357C225B-D509-4D35-BE0A-E9F17553FDE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F2DAA6-7DD5-44C2-BF99-6A6AE9F5A73C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F2DAA6-7DD5-44C2-BF99-6A6AE9F5A73C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F2DAA6-7DD5-44C2-BF99-6A6AE9F5A73C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F2DAA6-7DD5-44C2-BF99-6A6AE9F5A73C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B0B5D71-C9D5-4100-966F-B01B46A4AD65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B0B5D71-C9D5-4100-966F-B01B46A4AD65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B0B5D71-C9D5-4100-966F-B01B46A4AD65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B0B5D71-C9D5-4100-966F-B01B46A4AD65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BC1F0F4-0D10-438D-9C78-E35D3228D646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BC1F0F4-0D10-438D-9C78-E35D3228D646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BC1F0F4-0D10-438D-9C78-E35D3228D646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BC1F0F4-0D10-438D-9C78-E35D3228D646}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7C93CCDE-0065-4E98-A412-4EC49B37985A} = {7937BCC9-61D1-4FC2-BD82-04648C757114}
+		{357C225B-D509-4D35-BE0A-E9F17553FDE7} = {7937BCC9-61D1-4FC2-BD82-04648C757114}
+		{91F2DAA6-7DD5-44C2-BF99-6A6AE9F5A73C} = {7937BCC9-61D1-4FC2-BD82-04648C757114}
+		{1BC1F0F4-0D10-438D-9C78-E35D3228D646} = {7937BCC9-61D1-4FC2-BD82-04648C757114}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {753F63B3-915F-4870-B70D-5F1A39CF4D0B}
+	EndGlobalSection
+EndGlobal

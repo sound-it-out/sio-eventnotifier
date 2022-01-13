@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  sio.eventnotifier:
+    image: ${DOCKER_REGISTRY-}sioeventnotifier
+    build:
+      context: .
+      dockerfile: src/SIO.EventNotifier/Dockerfile
+    depends_on: 
+      - sio.eventnotifier.sql
+    external_links:
+      - sio.sql.store
+  sio.eventnotifier.sql:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+networks:    
+  default:
+    external:
+        name: sio.network

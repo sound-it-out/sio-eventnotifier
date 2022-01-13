@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  sio.eventnotifier:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ConnectionStrings__Store=Server=sio.sql.store;Initial Catalog=sio-store;User Id=sa;Password=1qaz-pl,
+      - ConnectionStrings__EventNotifierStore=Server=sio.eventnotifier.sql;Initial Catalog=sio-eventnotifier-store;User Id=sa;Password=1qaz-pl,
+      - ConnectionStrings__Projection=Server=sio.eventnotifier.sql;Initial Catalog=sio-eventnotifier-projections;User Id=sa;Password=1qaz-pl,
+      - Identity__Authority=http://host.docker.internal:5000
+      - Identity__ApiResource=notifications
+    ports:
+      - "11480:80"
+      - "44316:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  sio.eventnotifier.sql:
+    user: 'root'
+    environment:
+      SA_PASSWORD: "1qaz-pl,"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1452:1433"
+    volumes:
+      - /var/opt/mssql/data

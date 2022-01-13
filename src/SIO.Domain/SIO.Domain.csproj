@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+		<PackageReference Include="SIO.Infrastructure" Version="0.0.7" />
+		<PackageReference Include="SIO.Infrastructure.EntityFrameworkCore.SqlServer" Version="0.0.7" />
+		<PackageReference Include="SIO.IntegrationEvents" Version="0.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\SIO.EntityFrameworkCore\SIO.EntityFrameworkCore.csproj" />
+	</ItemGroup>
+
+</Project>
