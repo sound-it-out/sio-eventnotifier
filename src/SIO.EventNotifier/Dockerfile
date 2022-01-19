@@ -7,9 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["src/SIO.EventNotifier/SIO.EventNotifier.csproj", "src/SIO.EventNotifier/"]
-COPY ["src/SIO.Migrations/SIO.Migrations.csproj", "src/SIO.Migrations/"]
-COPY ["src/SIO.Domain/SIO.Domain.csproj", "src/SIO.Domain/"]
+COPY ["src/", "src/"]
 RUN dotnet restore "src/SIO.EventNotifier/SIO.EventNotifier.csproj"
 COPY . .
 WORKDIR "/src/src/SIO.EventNotifier"

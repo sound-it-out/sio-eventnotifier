@@ -6,8 +6,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
-		<PackageReference Include="SIO.Infrastructure" Version="0.0.7" />
-		<PackageReference Include="SIO.Infrastructure.EntityFrameworkCore.SqlServer" Version="0.0.7" />
+		<PackageReference Include="SIO.Infrastructure" Version="0.0.8" />
+		<PackageReference Include="SIO.Infrastructure.EntityFrameworkCore.SqlServer" Version="0.0.8" />
 		<PackageReference Include="SIO.IntegrationEvents" Version="0.0.1" />
 	</ItemGroup>
 
