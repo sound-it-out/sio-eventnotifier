@@ -1,7 +1,8 @@
 ﻿namespace SIO.Domain.Notifications.Services
 {
-    internal class NotificationPublisherOptions
+    public class NotificationPublisherOptions
     {
         public int Interval { get; set; }
+        public int MaxRetries { get; set; }
     }
 }

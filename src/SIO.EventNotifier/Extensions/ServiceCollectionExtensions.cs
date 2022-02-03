@@ -62,7 +62,7 @@ namespace SIO.EventNotifier.Extensions
                     options.AddStore<SIOEventNotifierStoreDbContext>(configuration.GetConnectionString("EventNotifierStore"), o => o.MigrationsAssembly($"{nameof(SIO)}.{nameof(Migrations)}"));
                     options.AddProjections(configuration.GetConnectionString("Projection"), o => o.MigrationsAssembly($"{nameof(SIO)}.{nameof(Migrations)}"));
                 })
-                .AddEntityFrameworkCoreStoreProjector(options => options.WithDomainProjections())
+                .AddEntityFrameworkCoreStoreProjector(options => options.WithDomainProjections(configuration))
                 .AddEvents(o => o.Register(EventHelper.AllEvents))
                 .AddCommands()
                 .AddJsonSerializers();

@@ -10,6 +10,11 @@ services:
       - ConnectionStrings__Projection=Server=sio.eventnotifier.sql;Initial Catalog=sio-eventnotifier-projections;User Id=sa;Password=1qaz-pl,
       - Identity__Authority=http://host.docker.internal:5000
       - Identity__ApiResource=notifications
+      - EventProcessor__Interval=3
+      - NotificationPublisher__Interval=3      
+      - NotificationPublisher__MaxRetries=5
+      - NotificationFailure__Interval=5000
+      - NotificationQueue__Interval=3
     ports:
       - "11480:80"
       - "44316:443"

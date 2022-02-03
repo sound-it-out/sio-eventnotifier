@@ -21,22 +21,25 @@ namespace SIO.Domain.Notifications.Services
         private CancellationTokenSource StoppingCts { get; set; }
         private readonly IServiceScope _scope;
         private readonly ILogger<NotificationPublisher> _logger;
-        private readonly IOptionsSnapshot<NotificationPublisherOptions> _options;
+        private readonly IOptionsMonitor<NotificationPublisherOptions> _options;
         private readonly ISIOProjectionDbContextFactory _projectionDbContextFactory;
         private readonly string _name;
         private readonly ICommandDispatcher _commandDispatcher;
 
         public NotificationPublisher(IServiceScopeFactory serviceScopeFactory,
+            IOptionsMonitor<NotificationPublisherOptions> options,
             ILogger<NotificationPublisher> logger)
         {
             if (serviceScopeFactory == null)
                 throw new ArgumentNullException(nameof(serviceScopeFactory));
+            if (options == null)
+                throw new ArgumentNullException(nameof(options));
             if (logger == null)
                 throw new ArgumentNullException(nameof(logger));
 
             _scope = serviceScopeFactory.CreateScope();
             _logger = logger;
-            _options = _scope.ServiceProvider.GetRequiredService<IOptionsSnapshot<NotificationPublisherOptions>>();
+            _options = options;
             _projectionDbContextFactory = _scope.ServiceProvider.GetRequiredService<ISIOProjectionDbContextFactory>();
             _commandDispatcher = _scope.ServiceProvider.GetRequiredService<ICommandDispatcher>();
 
@@ -120,7 +123,7 @@ namespace SIO.Domain.Notifications.Services
                     }
 
                     if (eventsInQueue.Length == 0)
-                        await Task.Delay(_options.Value.Interval, cancellationToken);
+                        await Task.Delay(_options.CurrentValue.Interval, cancellationToken);
                     else
                         await context.SaveChangesAsync(cancellationToken);
                 }

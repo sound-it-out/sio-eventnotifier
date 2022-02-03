@@ -30,7 +30,7 @@ namespace SIO.EventNotifier
 
             services.AddInfrastructure(_configuration)
                 .AddAuthentication(_configuration, _env)
-                .AddDomain()
+                .AddDomain(_configuration)
                 .AddCors()
                 .AddSignalR();
 

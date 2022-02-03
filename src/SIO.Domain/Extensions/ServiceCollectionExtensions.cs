@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using SIO.Domain.Notifications;
 using SIO.Domain.Notifications.CommandHandlers;
 using SIO.Domain.Notifications.Commands;
@@ -9,15 +10,14 @@ namespace SIO.Domain.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddDomain(this IServiceCollection services)
+        public static IServiceCollection AddDomain(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<ICommandHandler<QueueNotificationCommand>, QueueNotificationCommandHandler>();
             services.AddScoped<ICommandHandler<PublishNotificationCommand>, PublishNotificationCommandHandler>();
             services.AddHostedService<EventProcessor>();
             services.AddHostedService<NotificationPublisher>();
-            services.Configure<EventProcessorOptions>(o => o.Interval = 300);
-            services.Configure<NotificationPublisherOptions>(o => o.Interval = 300);
-            services.Configure<NotificationOptions>(o => o.MaxRetries = 5);
+            services.Configure<EventProcessorOptions>(configuration.GetSection("EventProcessor"));
+            services.Configure<NotificationPublisherOptions>(configuration.GetSection("NotificationPublisher"));
             return services;
         }
     }

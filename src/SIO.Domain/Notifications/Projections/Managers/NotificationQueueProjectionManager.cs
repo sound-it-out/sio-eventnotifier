@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SIO.Domain.Notifications.Events;
+using SIO.Domain.Notifications.Services;
 using SIO.Infrastructure.EntityFrameworkCore.DbContexts;
 using SIO.Infrastructure.Projections;
 
@@ -15,23 +16,23 @@ namespace SIO.Domain.Notifications.Projections.Managers
     {
         private readonly IEnumerable<IProjectionWriter<NotificationQueue>> _projectionWriters;
         private readonly ISIOProjectionDbContextFactory _projectionDbContextFactory;
-        private readonly NotificationOptions _notificationOptions;
+        private readonly IOptionsMonitor<NotificationPublisherOptions> _options;
 
         public NotificationQueueProjectionManager(ILogger<ProjectionManager<NotificationQueue>> logger,
             IEnumerable<IProjectionWriter<NotificationQueue>> projectionWriters,
             ISIOProjectionDbContextFactory projectionDbContextFactory,
-            IOptionsSnapshot<NotificationOptions> optionsSnapshot) : base(logger)
+            IOptionsMonitor<NotificationPublisherOptions> options) : base(logger)
         {
             if (projectionWriters == null)
                 throw new ArgumentNullException(nameof(projectionWriters));
             if (projectionDbContextFactory == null)
                 throw new ArgumentNullException(nameof(projectionDbContextFactory));
-            if (optionsSnapshot == null)
-                throw new ArgumentNullException(nameof(optionsSnapshot));
+            if (options == null)
+                throw new ArgumentNullException(nameof(options));
 
             _projectionWriters = projectionWriters;
             _projectionDbContextFactory = projectionDbContextFactory;
-            _notificationOptions = optionsSnapshot.Value;
+            _options = options;
 
             Handle<NotificationQueued>(HandleAsync);
             Handle<NotificationFailed>(HandleAsync);
@@ -65,7 +66,7 @@ namespace SIO.Domain.Notifications.Projections.Managers
 
             using var context = _projectionDbContextFactory.Create();
             var notification = await context.Set<NotificationQueue>().FindAsync(new object[] { @event.Subject }, cancellationToken: cancellationToken);
-            if (notification.Attempts == _notificationOptions.MaxRetries)
+            if (notification.Attempts == _options.CurrentValue.MaxRetries)
             {
                 await Task.WhenAll(_projectionWriters.Select(pw => pw.RemoveAsync(@event.Subject)));
             }
